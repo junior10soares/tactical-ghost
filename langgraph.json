@@ -1,0 +1,7 @@
+{
+  "node_version": "20",
+  "graphs": {
+    "tactical_ghost": "./lib/graph.ts:playGraph"
+  },
+  "env": ".env.local"
+}

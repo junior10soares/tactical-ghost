@@ -1,0 +1,18 @@
+{
+  "team": "brasil",
+  "formation": "4-3-3",
+  "color": "#1B9E4E",
+  "players": [
+    { "name": "Alisson", "fullName": "Alisson Becker", "number": 1, "position": "gk", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg", "label": "GK" },
+    { "name": "Danilo", "fullName": "Danilo Luiz da Silva", "number": 2, "position": "def", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Danilo_and_Bilal_El_Khannouss_at_2026_FIFA_World_Cup_by_YantsImages_%28cropped%29.jpg/330px-Danilo_and_Bilal_El_Khannouss_at_2026_FIFA_World_Cup_by_YantsImages_%28cropped%29.jpg", "label": "D1" },
+    { "name": "Marquinhos", "fullName": "Marcos Aoás Corrêa", "number": 4, "position": "def", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg", "label": "D2" },
+    { "name": "Gabriel", "fullName": "Gabriel Magalhães", "number": 3, "position": "def", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png", "label": "D3" },
+    { "name": "Wendell", "fullName": "Wendell Nascimento Borges", "number": 6, "position": "def", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Wendell.jpg/330px-Wendell.jpg", "label": "D4" },
+    { "name": "Casemiro", "fullName": "Carlos Henrique Casimiro", "number": 5, "position": "mid", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Casemiro_Brazil_Austria_June_2018.jpg/330px-Casemiro_Brazil_Austria_June_2018.jpg", "label": "M1" },
+    { "name": "Bruno Guimarães", "fullName": "Bruno Guimarães Rodriguez Moura", "number": 8, "position": "mid", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bruno_Guimar%C3%A3es.png/330px-Bruno_Guimar%C3%A3es.png", "label": "M2" },
+    { "name": "Lucas Paquetá", "fullName": "Lucas Tolentino Coelho de Lima", "number": 10, "position": "mid", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lucas_Paquet%C3%A1_of_West_Ham.jpeg/330px-Lucas_Paquet%C3%A1_of_West_Ham.jpeg", "label": "M3" },
+    { "name": "Raphinha", "fullName": "Raphael Dias Belloli", "number": 11, "position": "att", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg", "label": "A1" },
+    { "name": "Richarlison", "fullName": "Richarlison de Andrade", "number": 9, "position": "att", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Richarlison_%C3%A9_homenageado_na_ALES_%2810.July.2019%29_08_%28cropped%29.jpg/330px-Richarlison_%C3%A9_homenageado_na_ALES_%2810.July.2019%29_08_%28cropped%29.jpg", "label": "A2" },
+    { "name": "Vinicius Jr", "fullName": "Vinícius José Paládino de Oliveira Júnior", "number": 7, "position": "att", "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg", "label": "A3" }
+  ]
+}

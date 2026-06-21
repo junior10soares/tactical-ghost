@@ -1,0 +1,16 @@
+{
+  "id": "mexico-bloco-baixo",
+  "title": "Bloco baixo do México",
+  "description": "Jogando em casa na Copa 2026, o México se fecha no bloco baixo, com a linha de defesa quase colada na própria área, sufocando o espaço para infiltrações.",
+  "adversary": "méxico",
+  "defenders": [
+    { "label": "D1", "x": 200, "y": 330 },
+    { "label": "D2", "x": 280, "y": 335 },
+    { "label": "D3", "x": 330, "y": 340 },
+    { "label": "D4", "x": 380, "y": 335 },
+    { "label": "D5", "x": 460, "y": 330 },
+    { "label": "M1", "x": 250, "y": 280 },
+    { "label": "M2", "x": 330, "y": 285 },
+    { "label": "M3", "x": 410, "y": 280 }
+  ]
+}

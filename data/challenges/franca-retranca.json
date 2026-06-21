@@ -1,0 +1,16 @@
+{
+  "id": "franca-retranca",
+  "title": "Retranca da França",
+  "description": "A França recua os 11 jogadores e fecha o campo com uma linha defensiva compacta, esperando o erro do adversário para sair em contra-ataque com Mbappé.",
+  "adversary": "frança",
+  "defenders": [
+    { "label": "D1", "x": 180, "y": 300 },
+    { "label": "D2", "x": 260, "y": 310 },
+    { "label": "D3", "x": 330, "y": 320 },
+    { "label": "D4", "x": 400, "y": 310 },
+    { "label": "D5", "x": 480, "y": 300 },
+    { "label": "M1", "x": 230, "y": 250 },
+    { "label": "M2", "x": 330, "y": 255 },
+    { "label": "M3", "x": 430, "y": 250 }
+  ]
+}
