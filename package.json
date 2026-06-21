@@ -10,7 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "db:init": "tsx scripts/db-init.ts",
-    "studio": "langgraph dev"
+    "studio": "langgraphjs dev"
   },
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.53.1",

@@ -34,3 +34,6 @@ next-env.d.ts
 
 # gravações de demo (Playwright)
 recordings/
+
+# LangGraph API
+.langgraph_api

@@ -3,5 +3,5 @@
   "graphs": {
     "tactical_ghost": "./lib/graph.ts:playGraph"
   },
-  "env": ".env.local"
+  "env": ".env"
 }

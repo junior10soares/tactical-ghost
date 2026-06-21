@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Tactical Ghost — LangGraph Pipeline</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    width: 1280px;
+    height: 800px;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+  }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  .subtitle { color: #9ca3af; font-size: 14px; margin-bottom: 28px; }
+  .graph {
+    position: relative;
+    width: 1100px;
+    height: 160px;
+  }
+  .node {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 170px;
+    height: 70px;
+    border-radius: 14px;
+    border: 2px solid #3f3f46;
+    background: #18181b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: #a1a1aa;
+    transition: all 0.35s ease;
+  }
+  .node.schema { border-style: dashed; font-size: 13px; color: #71717a; width: 110px; }
+  .node.active {
+    border-color: #10b981;
+    color: #ecfdf5;
+    background: #064e3b;
+    box-shadow: 0 0 24px rgba(16,185,129,0.45);
+  }
+  #n-start { left: 0; }
+  #n-analyze { left: 280px; }
+  #n-persist { left: 660px; }
+  #n-end { left: 990px; }
+  .edge {
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    background: #3f3f46;
+    transform: translateY(-50%);
+  }
+  .edge.active { background: #10b981; box-shadow: 0 0 8px rgba(16,185,129,0.6); }
+  #e1 { left: 110px; width: 170px; }
+  #e2 { left: 450px; width: 210px; }
+  #e3 { left: 830px; width: 160px; }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    width: 0; height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid #3f3f46;
+    transform: translateY(-50%);
+  }
+  .arrow.active { border-left-color: #10b981; }
+  #a1 { left: 278px; }
+  #a2 { left: 658px; }
+  #a3 { left: 988px; }
+  .panel {
+    margin-top: 36px;
+    width: 1000px;
+    height: 360px;
+    background: #111113;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #d4d4d8;
+    overflow: hidden;
+  }
+  .panel .label { color: #10b981; font-weight: 700; margin-bottom: 8px; display: block; font-family: -apple-system, sans-serif; font-size: 14px; }
+  #panel-body { white-space: pre-wrap; word-break: break-word; }
+  .k { color: #60a5fa; }
+  .s { color: #fbbf24; }
+  .n { color: #f472b6; }
+</style>
+</head>
+<body>
+  <h1>Tactical Ghost — Pipeline LangGraph</h1>
+  <div class="subtitle">Grafo real, extraído via API local do <code>langgraphjs dev</code> (sem login necessário)</div>
+
+  <div class="graph">
+    <div class="node schema" id="n-start">__start__</div>
+    <div class="edge" id="e1"></div>
+    <div class="arrow" id="a1"></div>
+    <div class="node" id="n-analyze">analyze</div>
+    <div class="edge" id="e2"></div>
+    <div class="arrow" id="a2"></div>
+    <div class="node" id="n-persist">persist</div>
+    <div class="edge" id="e3"></div>
+    <div class="arrow" id="a3"></div>
+    <div class="node schema" id="n-end">__end__</div>
+  </div>
+
+  <div class="panel" id="panel">
+    <span class="label">Estado inicial</span>
+    <div id="panel-body"></div>
+  </div>
+
+<script>
+  const states = [
+    {
+      label: 'Estado inicial → entrando no nó "analyze"',
+      json: {
+        playText: "Vinicius arrancou pela esquerda, driblou dois e cruzou para Richarlison, que bateu de primeira e marcou um golaço",
+        team: "brasil",
+        formation: "4-3-3",
+        currentPlayers: []
+      }
+    },
+    {
+      label: 'Nó "analyze" concluído (Groq Llama 3.3 70B) → entrando no nó "persist"',
+      json: {
+        analysis: {
+          resumo: "Vinicius driblou dois marcadores pela esquerda, cruzou para Richarlison que finalizou de primeira e marcou um golaço.",
+          tipo: "cruzamento",
+          eficacia: 88,
+          steps: "[ 6 steps — corrida, drible x2, cruzamento, finalização, gol ]",
+          analise: "E aí, amigos da rede! Vinicius, com a velocidade de um raio..."
+        }
+      }
+    },
+    {
+      label: 'Nó "persist" concluído (Turso) → __end__',
+      json: { playId: 7, "...": "jogada salva no histórico" }
+    }
+  ];
+
+  function syntaxHighlight(obj) {
+    const json = JSON.stringify(obj, null, 2);
+    return json
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"([^"]+)":/g, '<span class="k">"$1"</span>:')
+      .replace(/: "([^"]*)"/g, ': <span class="s">"$1"</span>')
+      .replace(/: (\d+)/g, ': <span class="n">$1</span>');
+  }
+
+  function setActive(nodeIds, edgeIds, arrowIds) {
+    document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.edge').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.arrow').forEach(n => n.classList.remove('active'));
+    nodeIds.forEach(id => document.getElementById(id).classList.add('active'));
+    edgeIds.forEach(id => document.getElementById(id).classList.add('active'));
+    arrowIds.forEach(id => document.getElementById(id).classList.add('active'));
+  }
+
+  function renderPanel(stateIndex) {
+    const s = states[stateIndex];
+    document.querySelector('.panel .label').textContent = s.label;
+    document.getElementById('panel-body').innerHTML = syntaxHighlight(s.json);
+  }
+
+  async function run() {
+    setActive(['n-start'], [], []);
+    await new Promise(r => setTimeout(r, 1800));
+
+    setActive(['n-start', 'n-analyze'], ['e1'], ['a1']);
+    renderPanel(0);
+    await new Promise(r => setTimeout(r, 3200));
+
+    setActive(['n-analyze', 'n-persist'], ['e2'], ['a2']);
+    renderPanel(1);
+    await new Promise(r => setTimeout(r, 3800));
+
+    setActive(['n-persist', 'n-end'], ['e3'], ['a3']);
+    renderPanel(2);
+    await new Promise(r => setTimeout(r, 3000));
+
+    window.__done = true;
+  }
+  run();
+</script>
+</body>
+</html>
