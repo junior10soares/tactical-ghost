@@ -31,3 +31,6 @@ next-env.d.ts
 # local db
 *.db
 *.db-journal
+
+# gravações de demo (Playwright)
+recordings/
